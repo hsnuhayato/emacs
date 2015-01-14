@@ -2,6 +2,8 @@
 (require 'acp)
 (add-hook 'emacs-lisp-mode-hook 'acp-mode)
 (add-hook 'lisp-mode-hook 'acp-mode)
+(add-hook 'c++-mode-hook 'acp-mode)
+(add-hook 'tex-mode-hook 'acp-mode)
 (setq acp-paren-alist
   '((?( . ?))
     (?[ . ?])
