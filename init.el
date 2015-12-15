@@ -2,20 +2,23 @@
 (require 'acp)
 (add-hook 'c++-mode-hook 'electric-pair-mode)
 (add-hook 'tex-mode-hook 'electric-pair-mode)
+(add-hook 'c-mode-hook 'electric-pair-mode)
+(add-hook 'python-mode-hook 'electric-pair-mode)
 
-(autoload 'gtags-mode "gtags" "" t)
-(setq gtags-mode-hook
-      '(lambda ()
-         (local-set-key "\M-t" 'gtags-find-tag)
-         (local-set-key "\M-r" 'gtags-find-rtag)
-         (local-set-key "\M-s" 'gtags-find-symbol)
-         (local-set-key "\C-t" 'gtags-pop-stack)
-         ))
-(add-hook 'c-mode-common-hook
-          '(lambda()
-             (gtags-mode 1)
-             (gtags-make-complete-list)
-             ))
+
+;;(autoload 'gtags-mode "gtags" "" t)
+;;(setq gtags-mode-hook
+;;      '(lambda ()
+;;         (local-set-key "\M-t" 'gtags-find-tag)
+;;         (local-set-key "\M-r" 'gtags-find-rtag)
+;;        (local-set-key "\M-s" 'gtags-find-symbol)
+;;         (local-set-key "\C-t" 'gtags-pop-stack)
+;;         ))
+;;(add-hook 'c-mode-common-hook
+;;          '(lambda()
+;;             (gtags-mode 1)
+;;             (gtags-make-complete-list)
+;;             ))
 ;; (add-hook 'emacs-lisp-mode-hook 'acp-mode)
 ;; (add-hook 'lisp-mode-hook 'acp-mode)
 ;; (add-hook 'c++-mode-hook 'acp-mode)
@@ -103,3 +106,9 @@
 '(lambda ()
 (hs-minor-mode 1)))
 (define-key global-map (kbd "C-x /") 'hs-toggle-hiding)
+
+(defun revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive) (revert-buffer t t))
+
+(global-set-key (kbd "<f5>") 'revert-buffer-no-confirm)
